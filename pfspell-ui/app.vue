@@ -41,7 +41,7 @@ const searchText = ref<string>('')
 const range = ref<SelectOption[]>([])
 const classes = ref<SelectOption[]>([])
 const classLevels = ref<SelectOption[]>([])
-const spellResistance = ref<CheckboxItem>({selected: CheckboxState.Indeterminate, text: 'Spell Resistance'})
+const spellResistance = ref<CheckboxItem>({selected: CheckboxState.Unchecked, text: 'Spell Resistance'})
 const savingThrow = ref<SelectOption[]>([])
 const schools = ref<SelectOption[]>([])
 
@@ -74,7 +74,7 @@ const { pending, data: searchResult } = useLazyAsyncData<Result>('search', () =>
         class: classes.value.length > 0 ? classes.value[0].key.substring(8): '',
         class_levels: classLevels.value.length > 0 ? classLevels.value.map((v) => v.key).join(',') : '',
         range: range.value.length > 0 ? range.value.map((v) => v.key).join(',') : '',
-        spell_resistance: spellResistance.value.selected == CheckboxState.Checked ? 1: spellResistance.value.selected == CheckboxState.Indeterminate ? '': 0,
+        spell_resistance: spellResistance.value.selected == CheckboxState.Checked ? 1: spellResistance.value.selected == CheckboxState.Unchecked ? '': 0,
         saving_throw: savingThrow.value.length > 0 ? savingThrow.value.map((v) => v.key).join(',') : '',
         school: schools.value.length > 0 ? schools.value[0].key: '',
         sub_school: '',
