@@ -5,7 +5,7 @@ export default defineNuxtConfig({
     ssr: false,
     runtimeConfig: {
         public: {
-            API_BASE_URL: process.env.NODE_ENV !== 'production' ? process.env.API_DEV_URL: process.env.API_PROD_URL
+            API_BASE_URL: process.env.NODE_ENV !== 'production' ? process.env.API_DEV_URL: '/api/'
         }
     },
     typescript: {
