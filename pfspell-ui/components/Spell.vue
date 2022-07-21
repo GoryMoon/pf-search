@@ -1,6 +1,6 @@
 <template>
     <div class="modal modal-open" v-if="show && spell !== null" @mousedown="hideModal">
-        <div class="modal-box w-11/12 max-w-5xl relative" ref="modalBox">
+        <div class="modal-box w-11/12 max-w-7xl relative" ref="modalBox">
             <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" @click="close">✕</label>
             <a class="link" :href="spell.url" target="_blank">
                 <h1 class="title text-4xl">{{ spell.name }}</h1>
@@ -29,7 +29,7 @@ const show = computed<boolean>({
 const modalBox = ref<HTMLDivElement>(null)
 
 function hideModal(e: MouseEvent) {
-    if (e.target == modalBox.value)
+    if (e.target == modalBox.value || modalBox.value.contains(e.target))
         return
 
     close()
