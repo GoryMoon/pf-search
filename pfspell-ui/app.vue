@@ -12,7 +12,7 @@
                 <PfSelect placeholder="Class" v-model="classes" @update:model-value="updateClasses" :options="availableClasses" />
                 <PfCheckboxDropdown name="Class Level" class="ml-2" v-model="classLevels" @update:model-value="updateClassLevels" :disabled="availableClassLevels.length <= 0" :options="availableClassLevels" />
                 <div class="divider divider-horizontal"></div>
-                <PfCheckbox v-model="spellResistance" indeterminable reverse @update:model-value="refreshData" />
+                <PfCheckbox v-model="spellResistance" indeterminable @update:model-value="refreshData" />
                 <div class="divider divider-horizontal"></div>
                 <PfCheckboxDropdown name="Saving Throw" v-model="savingThrow" @update:model-value="refreshData" :options="availableSavingThrows" />
                 <div class="divider divider-horizontal"></div>
