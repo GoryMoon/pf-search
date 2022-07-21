@@ -32,25 +32,30 @@
             </tbody>
         </table>
     </div>
+    <Spell :spell="selectedSpell" :show="showSpell" @close="(val: boolean) => showSpell = val" />
 </template>
 <script setup lang="ts">
 import _startCase from 'lodash/startCase'
-import { Classes, Spell } from '~/types';
+import { Classes, Spell as SpellType } from '~/types';
 
 const { spells, classFilter = '' } = defineProps<{
-    spells: Spell[],
+    spells: SpellType[],
     classFilter?: string
 }>()
 
-const sortedSpells = computed<Spell[]>(() => {
+const selectedSpell = ref<SpellType>(null)
+const showSpell = ref<boolean>(false)
+
+const sortedSpells = computed<SpellType[]>(() => {
     if (classFilter !== '') {
-        spells.sort((a: Spell, b: Spell) => a.classes[classFilter] - b.classes[classFilter])
+        spells.sort((a: SpellType, b: SpellType) => a.classes[classFilter] - b.classes[classFilter])
     }
     return spells
 })
 
-function openSpellInfo(spell: Spell) {
-    
+function openSpellInfo(spell: SpellType) {
+    selectedSpell.value = spell
+    showSpell.value = true
 }
 
 function formatClasses(classes: Classes) {

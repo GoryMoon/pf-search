@@ -1,19 +1,43 @@
 <template>
-    <div class="py-4">
-        <a class="link" :href="spell.url" target="_blank">
-            <h1 class="title text-xl">{{ spell.name }}</h1>
-        </a>
-        <div class="text-base">{{ spell.description }}</div>
-        
+    <div class="modal modal-open" v-if="show && spell !== null" @mousedown="hideModal">
+        <div class="modal-box w-11/12 max-w-5xl relative" ref="modalBox">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2" @click="close">✕</label>
+            <a class="link" :href="spell.url" target="_blank">
+                <h1 class="title text-4xl">{{ spell.name }}</h1>
+            </a>
+            <div class="text-base">{{ spell.description }}</div>
+        </div>
     </div>
 </template>
 <script setup lang="ts">
-import { Spell } from '~/types';
+import { Spell as SpellType } from '~/types';
 
 
 const props = defineProps<{
-    spell: Spell
+    spell?: SpellType,
+    show: boolean
 }>()
+const emit = defineEmits(['close'])
+
+const show = computed<boolean>({
+    get() {
+        return props.show
+    }, set(val: boolean) {
+        emit('close', val)
+    }
+})
+const modalBox = ref<HTMLDivElement>(null)
+
+function hideModal(e: MouseEvent) {
+    if (e.target == modalBox.value)
+        return
+
+    close()
+}
+
+function close() {
+    show.value = false
+}
 
 </script>
 <style>
