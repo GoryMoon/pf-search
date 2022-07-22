@@ -6,9 +6,9 @@
             <div class="w-full grid justify-items-center">
                 <input v-model.trim="searchText" type="text" placeholder="Search…" class="input input-bordered md:input-lg max-w-lg w-full" />
             </div>
-            <div class="collapse collapse-arrow sm:collapse-open overflow-visible mt-4 rounded-md border border-base-300 sm:border-none">
+            <div class="collapse collapse-arrow sm:collapse-open overflow-visible mt-4 rounded-box sm:border-none border border-base-300">
                 <input type="checkbox" v-model="showFilter" class="sm:hidden" /> 
-                <div class="collapse-title text-xl sm:hidden bg-primary text-primary-content">
+                <div class="collapse-title text-xl sm:hidden rounded-box">
                     Filters
                 </div>
                 <div :class="['collapse-content flex flex-col lg:flex-row lg:flex-wrap gap-y-1 items-center', {'overflow-visible': showFilter}]">
@@ -22,7 +22,6 @@
                     <PfCheckboxDropdown name="Saving Throw" v-model="savingThrow" @update:model-value="refreshData" :options="availableSavingThrows" />
                     <div class="divider divider-horizontal"></div>
                     <PfSelect placeholder="School" v-model="schools" @update:model-value="refreshData" :options="availableSchools" />
-                    <div class="divider divider-horizontal"></div>
                 </div>
             </div>
             <div class="divider"></div>
