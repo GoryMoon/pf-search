@@ -2,7 +2,7 @@
 interface School {
     school: string,
     sub_school: string,
-    descriptors: string
+    descriptors: string[]
 }
 
 interface Classes {

@@ -16,7 +16,7 @@
                         ref="deselectButtons"
                         type="button"
                         @click="deselect(option)">
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        <XIcon class="inline-block w-4 h-4 stroke-current" />
                     </button>
                 </span>
             </slot>
@@ -39,9 +39,7 @@
                 aria-label="Clear Selected"
                 class="cursor-pointer"
                 @click="clearSelection">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-4 h-4 stroke-current">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
+                <XIcon class="inline-block w-4 h-4 stroke-current" />
             </button>
         </div>
         <ul
@@ -66,6 +64,7 @@
     </div>
 </template>
 <script setup lang="ts">
+import { XIcon } from '@heroicons/vue/outline'
 import { SelectOption } from '~/types';
 
 var deselectButtons = ref<HTMLButtonElement[]>([])

@@ -1,9 +1,8 @@
 <template>
-    <div class="overflow-x-auto" v-if="spells.length > 0">
+    <div class="overflow-x-auto pt-4" v-if="spells.length > 0">
         <table class="table table-zebra table-compact w-full">
             <thead>
                 <tr>
-                    <th class="hidden"></th>
                     <th>Name</th>
                     <th>Range</th>
                     <th class="max-w-class">Classes</th>
@@ -20,7 +19,6 @@
                     class="hover cursor-pointer"
                     @click="openSpellInfo(spell)"
                     >
-                    <td class="hidden"></td>
                     <td class="title text-lg">{{ spell.name }}</td>
                     <td>{{ _startCase(spell.effect.range) }}</td>
                     <td class="whitespace-normal max-w-class">{{ formatClasses(spell.classes) }}</td>
@@ -32,7 +30,7 @@
             </tbody>
         </table>
     </div>
-    <Spell :spell="selectedSpell" :show="showSpell" @close="(val: boolean) => showSpell = val" />
+    <Spell :spell="selectedSpell" v-model:show="showSpell" />
 </template>
 <script setup lang="ts">
 import _startCase from 'lodash/startCase'

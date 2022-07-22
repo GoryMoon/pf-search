@@ -25,7 +25,7 @@
             </div>
             <div v-if="!pending && searchResult != null" class="pb-10">
                 <span class="text-sm">Matches: {{ searchResult.estimatedTotalHits }}</span>
-                <SpellTable class="pt-4" :spells="searchResult.hits" :class-filter="classes.length > 0 ? classes[0].key.substring(8): ''"/>
+                <SpellTable :spells="searchResult.hits" :class-filter="classes.length > 0 ? classes[0].key.substring(8): ''"/>
             </div>
         </div>
     </div>
@@ -41,7 +41,7 @@ const searchText = ref<string>('')
 const range = ref<SelectOption[]>([])
 const classes = ref<SelectOption[]>([])
 const classLevels = ref<SelectOption[]>([])
-const spellResistance = ref<CheckboxItem>({selected: CheckboxState.Unchecked, text: 'Spell Resistance'})
+const spellResistance = ref<CheckboxItem>({selected: CheckboxState.Unchecked, text: 'Apply Spell Resistance'})
 const savingThrow = ref<SelectOption[]>([])
 const schools = ref<SelectOption[]>([])
 
@@ -143,7 +143,6 @@ const availableSavingThrows = computed(() => {
     if (searchResult.value == null)
         return []
 
-    let anyCount = 0
     let savingThrows: SelectOption[] = []
     for (const key of savingThrowTypes) {
         if (searchResult.value.facetDistribution['saving_throw.' + key] == undefined)
@@ -151,12 +150,9 @@ const availableSavingThrows = computed(() => {
 
         const name = _startCase(key)
         const count = searchResult.value.facetDistribution['saving_throw.' + key]['true']
-        if (key !== 'none')
-            anyCount += count
         savingThrows.push({ name: name, key, count })
     }
 
-    savingThrows.push({ name: 'Any set', key: 'any', count: anyCount})
     savingThrows = _unionWith(savingThrows, savingThrowDefaults, (a: SelectOption, b: SelectOption) => a.key === b.key)
 
     return savingThrows
