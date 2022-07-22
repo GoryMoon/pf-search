@@ -6,18 +6,24 @@
             <div class="w-full grid justify-items-center">
                 <input v-model.trim="searchText" type="text" placeholder="Search…" class="input input-bordered md:input-lg max-w-lg w-full" />
             </div>
-            <div class="flex flex-col lg:flex-row lg:flex-wrap gap-y-4 items-center pt-6">
-                <PfCheckboxDropdown name="Range" v-model="range" @update:model-value="refreshData" :options="availableRanges" />
-                <div class="divider divider-horizontal"></div>
-                <PfSelect placeholder="Class" v-model="classes" @update:model-value="updateClasses" :options="availableClasses" />
-                <PfCheckboxDropdown name="Class Level" class="ml-2" v-model="classLevels" @update:model-value="updateClassLevels" :disabled="availableClassLevels.length <= 0" :options="availableClassLevels" />
-                <div class="divider divider-horizontal"></div>
-                <PfCheckbox v-model="spellResistance" indeterminable @update:model-value="refreshData" />
-                <div class="divider divider-horizontal"></div>
-                <PfCheckboxDropdown name="Saving Throw" v-model="savingThrow" @update:model-value="refreshData" :options="availableSavingThrows" />
-                <div class="divider divider-horizontal"></div>
-                <PfSelect placeholder="School" v-model="schools" @update:model-value="refreshData" :options="availableSchools" />
-                <div class="divider divider-horizontal"></div>
+            <div class="collapse collapse-arrow sm:collapse-open overflow-visible mt-4 rounded-md border border-base-300 sm:border-none">
+                <input type="checkbox" v-model="showFilter" class="sm:hidden" /> 
+                <div class="collapse-title text-xl sm:hidden bg-primary text-primary-content">
+                    Filters
+                </div>
+                <div :class="['collapse-content flex flex-col lg:flex-row lg:flex-wrap gap-y-1 items-center', {'overflow-visible': showFilter}]">
+                    <PfCheckboxDropdown class="mt-2" name="Range" v-model="range" @update:model-value="refreshData" :options="availableRanges" />
+                    <div class="divider divider-horizontal"></div>
+                    <PfSelect placeholder="Class" v-model="classes" @update:model-value="updateClasses" :options="availableClasses" />
+                    <PfCheckboxDropdown name="Class Level" class="ml-2" v-model="classLevels" @update:model-value="updateClassLevels" :disabled="availableClassLevels.length <= 0" :options="availableClassLevels" />
+                    <div class="divider divider-horizontal"></div>
+                    <PfCheckbox v-model="spellResistance" indeterminable @update:model-value="refreshData" />
+                    <div class="divider divider-horizontal"></div>
+                    <PfCheckboxDropdown name="Saving Throw" v-model="savingThrow" @update:model-value="refreshData" :options="availableSavingThrows" />
+                    <div class="divider divider-horizontal"></div>
+                    <PfSelect placeholder="School" v-model="schools" @update:model-value="refreshData" :options="availableSchools" />
+                    <div class="divider divider-horizontal"></div>
+                </div>
             </div>
             <div class="divider"></div>
             <div v-if="pending" class="flex items-center justify-center">
@@ -48,6 +54,7 @@ const schools = ref<SelectOption[]>([])
 const availableClasses = ref<SelectOption[]>([])
 const availableClassLevels = ref<SelectOption[]>([])
 
+const showFilter = ref<boolean>(true)
 const offset = ref(0)
 const limit = ref(100)
 

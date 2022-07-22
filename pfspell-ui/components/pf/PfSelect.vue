@@ -30,7 +30,7 @@
                 @focus="onSearchFocus"
                 @keydown="onSearchKeyDown"
                 v-model="search"
-                class="input input-ghost w-full max-w-xs" />
+                class="input input-ghost max-w-xs" />
             <button
                 v-show="showClearButton"
                 ref="clearButton"
@@ -48,7 +48,7 @@
             @mouseup="mousedown = false"
             tabindex="-1"
             role="listbox"
-            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box min-w-52 max-h-screen-4 overflow-y-auto">
+            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box max-h-screen-4 overflow-y-auto">
             <li
                 v-for="(option, index) in filteredOptions"
                 :key="option.key">
@@ -270,7 +270,7 @@ const filteredOptions = computed<SelectOption[]>(() => {
 }
 
 .input-search {
-    min-width: 25rem;
+    min-width: 20rem;
 }
 
 </style>

@@ -12,8 +12,8 @@
             <div class="w-fit">
                 <span class="font-bold">School:</span>
                 <span class="hover:underline underline-offset-1">
-                    <span class="ml-1">{{ spell.school.school }}</span>
-                    <span v-if="spell.school.sub_school !== null" class="ml-1">({{ spell.school.sub_school }})</span>
+                    <span class="ml-1">{{ _capitalize(spell.school.school) }}</span>
+                    <span v-if="spell.school.sub_school !== null" class="ml-1">({{ _capitalize(spell.school.sub_school) }})</span>
                     <span v-if="spell.school.descriptors !== null && spell.school.descriptors.length > 0" class="ml-1">[{{ spell.school.descriptors.join(', ') }}]</span>
                 </span>
             </div>
