@@ -84,12 +84,10 @@ func (s *Server) search(ctx *fiber.Ctx) error {
 	if spellResistance != "" {
 		state, _ := strconv.ParseInt(spellResistance, 10, 64)
 		spellResistanceFilter := ""
-		if state == -1 {
-			spellResistanceFilter = "spell_resistance.applies = false AND spell_resistance.none_set = true"
-		} else if state == 0 {
-			spellResistanceFilter = "spell_resistance.applies = false"
+		if state == 0 {
+			spellResistanceFilter = "spell_resistance.applies = false AND spell_resistance.none_set = false"
 		} else if state == 1 {
-			spellResistanceFilter = "spell_resistance.applies = true"
+			spellResistanceFilter = "spell_resistance.applies = true OR spell_resistance.none_set = true"
 		}
 
 		if spellResistanceFilter != "" {
