@@ -10,7 +10,6 @@
                     <th class="max-w-xs">Spell Resistance</th>
                     <th class="max-w-xs">Saving Throw</th>
                     <th>School</th>
-                    <th>Subschool</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +25,7 @@
                     <td class="whitespace-normal max-w-xl">{{ formatClasses(spell.classes) }}</td>
                     <td class="whitespace-normal max-w-xs">{{ spell.spell_resistance.description }}</td>
                     <td class="whitespace-normal max-w-xs">{{ spell.saving_throw.description }}</td>
-                    <td>{{ _capitalize(spell.school.school) }}</td>
-                    <td>{{ _capitalize(spell.school.sub_school) }}</td>
+                    <td>{{ _capitalize(spell.school.school) }}<span v-if="spell.school.sub_school !== null"> ({{ _capitalize(spell.school.sub_school) }})</span></td>
                 </tr>
             </tbody>
         </table>

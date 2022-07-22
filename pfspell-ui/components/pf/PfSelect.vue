@@ -30,7 +30,7 @@
                 @focus="onSearchFocus"
                 @keydown="onSearchKeyDown"
                 v-model="search"
-                class="input input-ghost max-w-xs" />
+                class="input input-ghost max-w-input" />
             <button
                 v-show="showClearButton"
                 ref="clearButton"
@@ -48,7 +48,7 @@
             @mouseup="mousedown = false"
             tabindex="-1"
             role="listbox"
-            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box max-h-screen-4 overflow-y-auto">
+            class="dropdown-content menu w-full p-2 shadow bg-base-100 rounded-box max-h-screen-4 overflow-y-auto">
             <li
                 v-for="(option, index) in filteredOptions"
                 :key="option.key">
@@ -108,7 +108,7 @@ const selectedValue = computed<SelectOption[]>({
 })
 const optionList = computed(() => options.concat(pushTags ? pushedTags.value: []))
 const isValueEmpty = computed(() => selectedValue.value.length === 0)
-const showClearButton = computed(() => !multiple && !open.value && !isValueEmpty.value)
+const showClearButton = computed(() => !multiple && !isValueEmpty.value)
 
 function optionExists(opt: SelectOption) {
     return optionList.value.some((_opt) => optionComparator(_opt, opt))
@@ -258,6 +258,10 @@ const filteredOptions = computed<SelectOption[]>(() => {
     max-height: 50vh;
 }
 
+.max-w-input {
+    max-width: 8rem;
+}
+
 
 .input-ghost {
     padding-left: 0;
@@ -270,7 +274,7 @@ const filteredOptions = computed<SelectOption[]>(() => {
 }
 
 .input-search {
-    min-width: 20rem;
+    min-width: 16rem;
 }
 
 </style>

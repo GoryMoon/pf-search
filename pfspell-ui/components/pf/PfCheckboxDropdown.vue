@@ -2,7 +2,7 @@
     <div ref="dropdown" class="dropdown">
         <label ref="button" tabindex="0" :class="['btn', 'm-1', {'btn-disabled': disabled, 'btn-primary': modelValue.length > 0}]" >
             {{ name }}
-            <ChevronDownIcon class="ml-1 hidden h-4 w-4 opacity-70 sm:inline-block"/>
+            <ChevronDownIcon class="ml-1 h-4 w-4 opacity-70 inline-block"/>
             </label>
         <ul
             tabindex="0"

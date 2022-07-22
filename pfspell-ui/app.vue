@@ -93,7 +93,15 @@ const { pending, data: searchResult } = useLazyAsyncData<Result>('search', () =>
 
 const throttledSearch = _throttle(() => refreshNuxtData('search'), 500, { leading: false, trailing: true })
 watch(searchText, () => throttledSearch())
-onMounted(() => throttledSearch())
+onMounted(() => {
+    throttledSearch()
+    window.addEventListener('resize', onScreenResize)
+})
+onBeforeUnmount(() => window.removeEventListener('resize', onScreenResize))
+
+function onScreenResize() {
+    showFilter.value = true
+}
 
 function refreshData() {
     refreshNuxtData('search')

@@ -28,7 +28,7 @@
             </div>
             <div v-if="hasCasting" class="mb-2">
                 <span class="text-lg border-b-2 border-black">Casting</span>
-                <div v-if="spell.casting_time !== null">
+                <div v-if="spell.casting_time.trim() !== ''">
                     <span class="font-bold">Casting time:</span> {{ spell.casting_time }}
                 </div>
                 <div v-if="hasComponent">
@@ -67,6 +67,11 @@
 
             <span class="text-lg border-b-2 border-black w-fit">Description</span>
             <span class="block">{{ spell.description }}</span>
+
+            <div v-if="spell.source_book.trim() !== ''" class="mt-2">
+                <span class="text-lg border-b-2 border-black w-fit">Source</span>
+                <span class="block">{{ spell.source_book }}</span>
+            </div>
         </div>
     </div>
 </template>
@@ -110,7 +115,7 @@ const hasComponent = computed<boolean>(() => {
     return props.spell !== null && (props.spell.components.verbal || props.spell.components.divine_focus || props.spell.components.somatic)
 })
 const hasCasting = computed<boolean>(() => {
-    return props.spell !== null && (props.spell.casting_time !== null || hasCasting)
+    return props.spell !== null && (props.spell.casting_time.trim() !== '' || hasComponent.value)
 })
 const hasEffect = computed<boolean>(() => {
     return props.spell !== null && (

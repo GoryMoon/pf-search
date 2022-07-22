@@ -39,7 +39,7 @@ type SpellResistance struct {
 type Spell struct {
 	Id                string          `json:"id"`
 	Name              string          `json:"name"`
-	Link              string          `json:"url"`
+	Url               string          `json:"url"`
 	School            School          `json:"school"`
 	Classes           map[string]int  `json:"classes"`
 	CastingTime       string          `json:"casting_time"`
